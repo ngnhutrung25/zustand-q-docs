@@ -1,44 +1,39 @@
-import type {ReactNode} from 'react';
-import clsx from 'clsx';
-import Link from '@docusaurus/Link';
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
-import Layout from '@theme/Layout';
-import HomepageFeatures from '@site/src/components/HomepageFeatures';
-import Heading from '@theme/Heading';
+import Layout from "@theme/Layout";
 
-import styles from './index.module.css';
+import styles from "./index.module.css";
+import Link from "@docusaurus/Link";
 
-function HomepageHeader() {
-  const {siteConfig} = useDocusaurusContext();
+export default function Home() {
   return (
-    <header className={clsx('hero hero--primary', styles.heroBanner)}>
-      <div className="container">
-        <Heading as="h1" className="hero__title">
-          {siteConfig.title}
-        </Heading>
-        <p className="hero__subtitle">{siteConfig.tagline}</p>
-        <div className={styles.buttons}>
+    <Layout
+      title="Zustand Q"
+      description="A lightweight state management library with async superpowers"
+    >
+      <div className={styles.hero}>
+        <img
+          src="/img/zustand-q.webp"
+          alt="Zustand Q Logo"
+          className={styles.logo}
+        />
+        <div>
+          <h1 style={{ fontSize: 48 }}>Zustand Q</h1>
+          <p style={{ width: 300, fontSize: 18 }}>
+            A lightweight state management library with async superpowers
+          </p>
           <Link
-            className="button button--secondary button--lg"
-            to="/docs/intro">
-            Docusaurus Tutorial - 5min ⏱️
+            style={{
+              background: "#c6aad4",
+              color: "black",
+              padding: "8px 12px",
+              borderRadius: 24,
+            }}
+            className={styles.button}
+            to="/docs/introduction"
+          >
+            Get Started
           </Link>
         </div>
       </div>
-    </header>
-  );
-}
-
-export default function Home(): ReactNode {
-  const {siteConfig} = useDocusaurusContext();
-  return (
-    <Layout
-      title={`Hello from ${siteConfig.title}`}
-      description="Description will go into a meta tag in <head />">
-      <HomepageHeader />
-      <main>
-        <HomepageFeatures />
-      </main>
     </Layout>
   );
 }

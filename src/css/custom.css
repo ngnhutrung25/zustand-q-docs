@@ -6,25 +6,142 @@
 
 /* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #2e8555;
-  --ifm-color-primary-dark: #29784c;
-  --ifm-color-primary-darker: #277148;
-  --ifm-color-primary-darkest: #205d3b;
-  --ifm-color-primary-light: #33925d;
-  --ifm-color-primary-lighter: #359962;
-  --ifm-color-primary-lightest: #3cad6e;
+  --ifm-color-primary: #624988;
+  --ifm-color-primary-dark: #58427a;
+  --ifm-color-primary-darker: #533e74;
+  --ifm-color-primary-darkest: #45335f;
+  --ifm-color-primary-light: #6c5096;
+  --ifm-color-primary-lighter: #71549c;
+  --ifm-color-primary-lightest: #8064ac;
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+
+  /* custom */
+  --ifm-menu-link-padding-vertical: 0.8rem;
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
-[data-theme='dark'] {
-  --ifm-color-primary: #25c2a0;
-  --ifm-color-primary-dark: #21af90;
-  --ifm-color-primary-darker: #1fa588;
-  --ifm-color-primary-darkest: #1a8870;
-  --ifm-color-primary-light: #29d5b0;
-  --ifm-color-primary-lighter: #32d8b4;
-  --ifm-color-primary-lightest: #4fddbf;
+[data-theme="dark"] {
+  --ifm-color-primary: #d9c6e2;
+  --ifm-color-primary-dark: #c6aad4;
+  --ifm-color-primary-darker: #bd9ccd;
+  --ifm-color-primary-darkest: #a172b7;
+  --ifm-color-primary-light: #ece2f0;
+  --ifm-color-primary-lighter: #f5f0f7;
+  --ifm-color-primary-lightest: #ffffff;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+}
+
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
+
+body * {
+  font-family: "Nunito", sans-serif !important;
+  font-optical-sizing: auto;
+}
+
+.menu.thin-scrollbar {
+  padding: 0.5rem;
+}
+
+.menu__link,
+.menu__caret,
+.menu__list-item-collapsible {
+  border-radius: 1.5rem;
+}
+
+.menu__link {
+  padding-left: 1.5rem;
+  font-size: 90%;
+}
+
+.navbar.navbar--fixed-top {
+  backdrop-filter: blur(24px);
+  background-color: color-mix(
+    in srgb,
+    var(--ifm-navbar-background-color) 70%,
+    transparent 30%
+  );
+}
+
+/* search input style */
+.navbar__search {
+  margin: -0.25rem 0;
+}
+
+.navbar__search-input {
+  background: var(--ifm-navbar-background-color)
+    url('data:image/svg+xml;utf8,<svg fill="%23adadad" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" height="16px" width="16px"><path d="M6.02945,10.20327a4.17382,4.17382,0,1,1,4.17382-4.17382A4.15609,4.15609,0,0,1,6.02945,10.20327Zm9.69195,4.2199L10.8989,9.59979A5.88021,5.88021,0,0,0,12.058,6.02856,6.00467,6.00467,0,1,0,9.59979,10.8989l4.82338,4.82338a.89729.89729,0,0,0,1.29912,0,.89749.89749,0,0,0-.00087-1.29909Z" /></svg>')
+    no-repeat 0.75rem center / 1rem 1rem;
+  border: 1px solid
+    color-mix(in srgb, var(--ifm-navbar-link-color) 10%, transparent 90%);
+  outline: none;
+  padding-top: 1.2rem;
+  padding-bottom: 1.2rem;
+  width: 320px;
+}
+
+.navbar__search-input:hover {
+  border: 1px solid var(--ifm-color-primary);
+}
+
+.navbar__search-input:focus-visible {
+  border: 1px solid var(--ifm-color-primary);
+}
+
+/* props table style */
+#props + .table-wrapper table thead tr,
+#props + .table-wrapper table th,
+#props + .table-wrapper table td {
+  border: none;
+}
+
+#props + .table-wrapper {
+  overflow: auto;
+  border-radius: var(--ifm-code-border-radius);
+  box-shadow: var(--ifm-global-shadow-lw);
+  display: block;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+#props + .table-wrapper table {
+  border-collapse: collapse;
+  display: table;
+  width: 100%;
+  margin-bottom: 0;
+}
+
+#props + .table-wrapper table th {
+  background-color: rgb(246, 248, 250);
+}
+
+[data-theme="dark"] #props + .table-wrapper table th {
+  background-color: rgb(40, 42, 54);
+}
+
+#props + .table-wrapper table tbody tr {
+  background-color: unset;
+  border-top: 1px solid var(--ifm-toc-border-color);
+}
+
+#props + .table-wrapper table tbody tr:hover {
+  background-color: #f6f7f880;
+}
+
+code,
+code * {
+  font-family: "JetBrains Mono", monospace !important;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+code {
+  border: none !important;
+  border-radius: 6px;
+  padding: 5px;
+}
+
+[data-theme="dark"] #props + .table-wrapper table tbody tr:hover {
+  background-color: #14171a80;
 }
