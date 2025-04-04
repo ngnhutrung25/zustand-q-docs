@@ -24,8 +24,8 @@ createStore<TState, TActions, TQueries, TMutations>({
 
 - **initialData**: The initial state of the store.
 - **actions**: Optional functions to update the state.
-- **queries**: Optional configurations for fetching data (see [Query](./query)).
-- **mutations**: Optional configurations for mutating data (see [Mutation](./mutation)).
+- **queries**: Optional configurations for fetching data (see [Query](./queries)).
+- **mutations**: Optional configurations for mutating data (see [Mutation](./mutations)).
 - **persistName**: Persist state to local storage with this key.
 - **devtoolsName**: Name the store in Redux DevTools for debugging.
 
@@ -51,8 +51,8 @@ export const useMyStore = createStore({
 
 `createStore` supports asynchronous state management through `queries` and `mutations`. For detailed usage, refer to:
 
-- [Query](./query)
-- [Mutation](./mutation)
+- [Query](./queries)
+- [Mutation](./mutations)
 
 ## Notes
 

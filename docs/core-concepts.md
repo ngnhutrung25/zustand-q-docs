@@ -33,7 +33,7 @@ Mutations handle state changes like adding, updating, or deleting data.
 - **Example**: Adding a new item to a list.
 - **Features**: `mutationFn`, `onStore`, lifecycle hooks.
 
-See [API Reference](./api-reference) for detailed usage.
+See [API Reference](./api-reference/create-store) for detailed usage.
 
 ## Devtools and Persistence
 
