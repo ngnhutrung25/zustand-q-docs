@@ -53,7 +53,7 @@ const config: Config = {
 
   themeConfig: {
     // Replace with your project's social card
-    // image: "img/docusaurus-social-card.jpg",
+    image: "img/social-card.webp",
     navbar: {
       title: "Zustand Q",
       logo: {
@@ -125,6 +125,15 @@ const config: Config = {
       darkTheme: prismThemes.dracula,
     },
   } satisfies Preset.ThemeConfig,
+  plugins: [
+    [
+      "vercel-analytics",
+      {
+        debug: true,
+        mode: "auto",
+      },
+    ],
+  ],
 };
 
 export default config;

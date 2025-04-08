@@ -9,8 +9,8 @@ sidebar_position: 2
 
 Before installing Zustand Q, ensure you have the following:
 
-- Node.js (version 14 or higher)
-- A React or React Native project
+- **Node.js**: Version 14 or higher.
+- **React**: Version 16.8.0 or higher. Works with both React and React Native projects.
 
 ## Install Zustand Q
 
@@ -26,21 +26,11 @@ or
 yarn add zustand-q
 ```
 
-### Peer Dependencies
+This will also install `zustand` (version 5.0.3 or higher) as a dependency automatically.
 
-Zustand Q relies on `zustand` as a peer dependency. If you haven't installed it yet, run:
+### Optional Dependencies
 
-```bash
-npm install zustand
-```
-
-or
-
-```bash
-yarn add zustand
-```
-
-If your project uses HTTP requests (e.g., in the examples), you may also need `axios`:
+If your project involves HTTP requests (e.g., as shown in the examples), you may want to install `axios`:
 
 ```bash
 npm install axios
@@ -52,16 +42,6 @@ or
 yarn add axios
 ```
 
-## Verify Installation
+### Note for TypeScript Users
 
-To confirm that Zustand Q is installed correctly, import it in your project:
-
-```typescript
-import { createStore } from "zustand-q";
-
-const useMyStore = createStore({
-  initialData: { count: 0 },
-});
-
-console.log(useMyStore); // Should log a Zustand store
-```
+Zustand Q is built with TypeScript and provides type definitions out of the box. Ensure your project has TypeScript installed (`npm install typescript`) and a `tsconfig.json` file configured if you want to leverage its type safety features.

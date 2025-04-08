@@ -54,6 +54,10 @@ body * {
   font-size: 90%;
 }
 
+.menu__link--sublist-caret::after {
+  background: var(--ifm-menu-link-sublist-icon) 50% / 1.2rem 1.2rem;
+}
+
 .navbar.navbar--fixed-top {
   backdrop-filter: blur(24px);
   background-color: color-mix(
@@ -89,13 +93,13 @@ body * {
 }
 
 /* props table style */
-#props + .table-wrapper table thead tr,
-#props + .table-wrapper table th,
-#props + .table-wrapper table td {
+.table-wrapper table thead tr,
+.table-wrapper table th,
+.table-wrapper table td {
   border: none;
 }
 
-#props + .table-wrapper {
+.table-wrapper {
   overflow: auto;
   border-radius: var(--ifm-code-border-radius);
   box-shadow: var(--ifm-global-shadow-lw);
@@ -104,28 +108,32 @@ body * {
   margin-bottom: 1rem;
 }
 
-#props + .table-wrapper table {
+.table-wrapper table {
   border-collapse: collapse;
   display: table;
   width: 100%;
   margin-bottom: 0;
 }
 
-#props + .table-wrapper table th {
+.table-wrapper table th {
   background-color: rgb(246, 248, 250);
 }
 
-[data-theme="dark"] #props + .table-wrapper table th {
+[data-theme="dark"] .table-wrapper table th {
   background-color: rgb(40, 42, 54);
 }
 
-#props + .table-wrapper table tbody tr {
+.table-wrapper table tbody tr {
   background-color: unset;
   border-top: 1px solid var(--ifm-toc-border-color);
 }
 
-#props + .table-wrapper table tbody tr:hover {
+.table-wrapper table tbody tr:hover {
   background-color: #f6f7f880;
+}
+
+[data-theme="dark"] #props + .table-wrapper table tbody tr:hover {
+  background-color: #14171a80;
 }
 
 code,
@@ -140,8 +148,4 @@ code {
   border: none !important;
   border-radius: 6px;
   padding: 5px;
-}
-
-[data-theme="dark"] #props + .table-wrapper table tbody tr:hover {
-  background-color: #14171a80;
 }

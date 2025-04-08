@@ -1,17 +1,101 @@
 .hero {
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh;
-  text-align: center;
+  background: linear-gradient(to right, #f3e8ff, #ffffff, #e0f2fe);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  padding: 1.5rem;
+  max-width: 80rem;
+  margin: 0 auto;
 }
 
 .logo {
-  width: 200px;
-  height: auto;
-  margin-bottom: 20px;
+  width: 10rem;
 }
 
-.button:hover {
+.text {
+  text-align: center;
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #111827;
+}
+
+.description {
+  font-size: 1.25rem;
+  color: #4b5563;
+  max-width: 25rem;
+  margin-bottom: 1.5rem;
+}
+
+.highlight {
+  color: #9333ea;
+  font-weight: 600;
+}
+
+.gradientButton {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  font-size: 1.125rem;
+  background: linear-gradient(45deg, #c6aad4, #a78bfa);
+  color: #ffffff;
+  border-radius: 9999px;
   text-decoration: none;
+  transition: transform 0.3s ease, all 0.3s ease;
+}
+
+.gradientButton:hover {
+  transform: translateY(-2px);
+  color: #ffffff;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Responsive cho desktop */
+@media (min-width: 768px) {
+  .content {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+  .logo {
+    width: 14rem;
+  }
+  .text {
+    text-align: left;
+  }
+}
+
+/* Dark mode */
+[data-theme="dark"] .hero {
+  background: linear-gradient(to right, #2d1b3b, #1f2937, #1e3a8a);
+}
+
+[data-theme="dark"] .title {
+  color: #ffffff;
+}
+
+[data-theme="dark"] .description {
+  color: #d1d5db;
+}
+
+[data-theme="dark"] .highlight {
+  color: #c084fc; /* Tím nhạt hơn cho dark mode */
+}
+
+[data-theme="dark"] .gradientButton {
+  background: linear-gradient(45deg, #7c3aed, #a78bfa);
+}
+
+[data-theme="dark"] .gradientButton:hover {
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
 }

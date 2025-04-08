@@ -1,0 +1,159 @@
+---
+id: cat-list
+title: Cat List
+sidebar_label: Cat List
+sidebar_position: 1
+---
+
+## Overview
+
+The Cat List example demonstrates how to use Zustand Q to manage a dynamic list of cats in a React application. It showcases asynchronous state management with queries (data fetching) and mutations (CRUD operations), integrated with a modern UI built using [shadcn/ui](https://ui.shadcn.com/) components. This project highlights `zustand-q`’s ability to simplify global state management, handle async workflows, and deliver a responsive user experience.
+
+## Project Structure
+
+The project is organized as follows:
+
+- **`store/catStore.ts`**:
+
+  - Defines the Zustand Q store with:
+    - **Initial State**: `{ cats: Cat[], loading: boolean }` to track the cat list and loading status.
+    - **Actions**: Methods like `clearCats` or `addCatOffline` for state updates.
+    - **Queries**: `getCatList` to fetch the full list and `getCatById` to fetch a single cat from a mock API.
+    - **Mutations**: `addCat`, `updateCat`, and `deleteCat` for creating, updating, and removing cats via API calls.
+  - Centralizes all cat-related logic in one place.
+
+- **`App.tsx`**:
+
+  - The main component that:
+    - Renders a responsive UI with shadcn/ui components (e.g., `Button`, `Input`, `Table`).
+    - Handles user interactions: fetching the cat list, adding new cats, editing existing ones, and deleting them.
+    - Displays the cat list in a table with loading states and error handling.
+
+- **`components/OtherComponent.tsx`**:
+
+  - A simple component demonstrating state sharing with `zustand-q`.
+  - Example: Displays the total number of cats, updated in real-time as the store changes.
+
+- **`api.ts`**:
+  - Contains mock API configurations.
+
+## Interactive Demo
+
+Explore the full implementation in this interactive StackBlitz demo:
+
+import StackBlitzIframe from "@site/src/components/StackBlitzIframe";
+
+<StackBlitzIframe src="cat-list-with-zustand-q" />
+
+### What to Try
+
+- **Fetch Cats**: Click the "Fetch Cats" button to load the list from the mock API.
+- **Add a Cat**: Enter a name and click "Add" to create a new cat.
+- **Update a Cat**: Edit a cat’s name directly in the table.
+- **Delete a Cat**: Remove a cat from the list with the delete button.
+- Observe the `OtherComponent` updating in real-time as the cat count changes.
+
+## Code Example
+
+Here’s a simplified version of the store and UI:
+
+```typescript
+// store/catStore.ts
+import { createStore } from "zustand-q";
+import axios from "axios";
+
+interface Cat {
+  id: string;
+  name: string;
+}
+
+interface State {
+  cats: Cat[];
+  loading: boolean;
+}
+
+export const useCatStore = createStore({
+  initialData: { cats: [], loading: false } as State,
+  actions: (set) => ({
+    clearCats: () => set({ cats: [] }),
+  }),
+  queries: {
+    getCatList: {
+      queryFn: async () =>
+        await axios.get<{ data: Cat[] }>("https://api.example.com/cats"),
+      onStore: (data, set) => set({ cats: data.data, loading: false }),
+      onStart: () => set({ loading: true }),
+    },
+  },
+  mutations: {
+    addCat: {
+      mutationFn: async (variables: { name: string }) =>
+        await axios.post<{ data: Cat }>(
+          "https://api.example.com/cats",
+          variables
+        ),
+      onStore: (data, set) =>
+        set((state) => ({ cats: [...state.cats, data.data] })),
+    },
+  },
+});
+
+// App.tsx
+import { useCatStore } from "./store/catStore";
+import { Button, Input, Table } from "@/components/ui";
+
+const App = () => {
+  const { cats, loading, getCatList, addCat } = useCatStore();
+  const { refetch } = getCatList({ enabled: false });
+  const { mutate: createCat } = addCat();
+  const [newCatName, setNewCatName] = useState("");
+
+  return (
+    <div>
+      <Button onClick={refetch} disabled={loading}>
+        {loading ? "Loading..." : "Fetch Cats"}
+      </Button>
+      <div>
+        <Input
+          value={newCatName}
+          onChange={(e) => setNewCatName(e.target.value)}
+          placeholder="New cat name"
+        />
+        <Button onClick={() => createCat({ name: newCatName })}>Add Cat</Button>
+      </div>
+      <Table>
+        {cats.map((cat) => (
+          <tr key={cat.id}>
+            <td>{cat.name}</td>
+          </tr>
+        ))}
+      </Table>
+    </div>
+  );
+};
+
+// components/OtherComponent.tsx
+import { useCatStore } from "../store/catStore";
+
+export const OtherComponent = () => {
+  const { cats } = useCatStore();
+  return <p>Total Cats: {cats.length}</p>;
+};
+```
+
+## Explanation
+
+This project showcases `zustand-q`’s capabilities for managing asynchronous state in a React application:
+
+- **Centralized Logic**: The `catStore.ts` file consolidates state, actions, queries, and mutations, making it easy to manage and scale.
+- **Async Workflows**: Queries fetch data from a mock API, while mutations handle CRUD operations, all seamlessly updating the store.
+- **UI Integration**: shadcn/ui components (e.g., `Button`, `Input`, `Table`) provide a modern, responsive interface with minimal setup.
+- **State Sharing**: `OtherComponent` demonstrates how `zustand-q` enables real-time state updates across components without prop drilling.
+
+The demo integrates these features with a mock API, simulating real-world scenarios like loading states, error handling, and data persistence.
+
+## Notes
+
+- **shadcn/ui**: A collection of reusable, unstyled UI components that integrate seamlessly with Tailwind CSS, used here for a polished look.
+- **Scalability**: This structure scales well for larger apps—add more queries/mutations or split the store as needed.
+- **Mock API**: The demo uses a simulated API. In a real app, replace it with your backend endpoints.
