@@ -6,7 +6,7 @@ const StackBlitzIframe = ({ src }: { src: string }) => {
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
   useEffect(() => {
-    const baseUrl = `https://stackblitz.com/edit/${src}?embed=1&file=src%2Fstore%2FcatStore.ts`;
+    const baseUrl = `https://stackblitz.com/edit/${src}?embed=1&file=README.md`;
     const theme = colorMode === "dark" ? "dark" : "light";
     if (iframeRef.current) {
       iframeRef.current.src = `${baseUrl}&theme=${theme}`;
